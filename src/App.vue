@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <Index msg="Nuk's Aura Stat Calc"/>
+    <Home msg="Nuk's Aura Stat Calc"/>
   </div>
 </template>
 
 <script>
-import Index from './components/Index.vue'
+import Home from './views/Home.vue'
 
 export default {
   name: 'App',
   components: {
-    Index
+    Home,
   }
 }
 </script>
