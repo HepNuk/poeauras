@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <Home msg="Nuk's Aura Stat Calc"/>
   </div>
@@ -17,8 +17,14 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+@font-face {
+    font-family: itemFont;
+    src: url(./assets/fonts/Fontin-Bold.ttf);
+}
+
+.app {
+  
+  font-family: itemFont;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
