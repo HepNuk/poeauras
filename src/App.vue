@@ -4,13 +4,15 @@
       <h1>Nuk's PoE Aura stats calculator</h1>
       <p>- Under Construction</p>
     </div>
-    <div class="content">
-        <TopNav />
+
+      <TopNav />
+    <div class="flex-container">
       <div class="inputs">
-        <img alt="Vue logo" src="./assets/logo.png">
-        <Home msg="Nuk's Aura Stat Calc"/>
+        <Home :auraEffect="auraEffect" :auraList="auraList" @change-auraeffect="auraEffectUp"/>
+        <button @click="auraEffectUp">hi</button>
       </div>
       <div class="outputs">
+        <StatOutput :auraEffect="auraEffect" :auraList="auraList" />
 
       </div>
     </div>
@@ -20,56 +22,33 @@
 <script>
 import TopNav from './components/TopNav.vue'
 import Home from './views/Home.vue'
+import StatOutput from './components/StatOutput.vue'
+import auraList from './models/auraList.js'
 
 export default {
   name: 'App',
   components: {
     Home,
     TopNav,
+    StatOutput,
+  }, 
+  data() {
+    return {
+      auraList,
+      auraEffect: 0,
+    }
+  },
+  methods: {
+    log: function (log) {
+      console.log(log);
+    },
+    auraEffectUp(){
+      this.auraEffect++;
+    }
   }
 }
 </script>
 
 <style>
-@font-face {
-    font-family: itemFont;
-    src: url(./assets/fonts/Fontin-Bold.ttf);
-}
-
-body {
-  padding: 10px;
-  background-color: rgb(29, 26, 26);
-}
-
-.app {
-  font-family: itemFont;
-  background-color: none;
-  padding: none;
-}
-
-.content {
-  padding: 0px;
-  background: red;
-}
-
-
-.header {
-  padding: 15px;
-  text-align: left;
-  background-color: none;
-  margin-bottom: -20px;
-  margin-top: -40px;
-}
-
-.header h1 {
-  color: rgb(212, 212, 212);
-  font-size: 40px;
-  margin-bottom: -15px;
-}
-
-.header p {  
-    font-size: larger;
-    color: white;
-}
-
+  @import './assets/css/styles.css';
 </style>

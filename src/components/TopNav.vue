@@ -3,6 +3,7 @@
     <button>
       Home
     </button>
+    <div class="divider" />
     <button>
       Asc
     </button>
@@ -17,10 +18,12 @@ export default {
 
 <style scoped>
 .topnav {
+  position: relative;
+  z-index: 2;
   overflow: hidden;
-  background-color: blue;
   padding: 5px;
-  margin-bottom: -16px;
+  margin-bottom: -13px;
+  margin-left: 10px;
 }
 
 .topnav button {

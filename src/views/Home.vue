@@ -1,32 +1,43 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div class="content">
+    <button @click="$emit('change-auraeffect')"> 
+      Test in Home
+    </button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Home',
   props: {
-    msg: String
+    auraList: Array,
+    auraEffect: Number,
+  },
+  methods: {
+    auraPlus(){
+      this.auraEffect++;
+      console.log(this.auraEffect);
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.content {
+  box-sizing: border-box;
+  background-color: black;
+  color: #2fb2c9;
+  border-style: solid;
+  border-color: chocolate;
+  border-radius: 8px;
+  padding-left: 15px;
+  padding-right: 10px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  height: 100%;
+  width: 100%;
 }
 </style>
