@@ -23,10 +23,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: "Aura",
   props: {
-    key: Object,
+    key: String,
     aura: Object,
     auraData: Object,
     auraEffect: Number,
@@ -34,7 +36,7 @@ export default {
   data(){
     return{
       generosityEffect: [
-            [0],
+            [ 0 ],
             [ 0,
               20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
               30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
@@ -51,7 +53,9 @@ export default {
         specificAuraEffect: 100,
     }
   },
-  computed: {
+  computed: mapGetters(['getAuraEffect', 'getAuras', 'getAuraEffect', 'getClusters']),
+  
+  methods: {
     printLevelStatLine(statLines, index){
 
       const statValues = this.auraData.levelStatLines.values[index][this.aura.level];
@@ -80,8 +84,8 @@ export default {
 
     calculateAfterAuraEffect(value){
 
-      let auraEffect = this.auraEffect + this.specificAuraEffect;
-
+      let auraEffect = 0;// this.auraEffect + this.specificAuraEffect;
+      console.log(this.key);
       switch(this.aura.generosityType){
         case 1:
           auraEffect += this.generosityEffect[1][this.aura.generosityLevel];
@@ -97,9 +101,10 @@ export default {
     },
     calcAuraEffect(){
 
-      const finalAuraEffect = this.auraEffect;
+      //let auraEffect = this.getClusters.auraEffect();
       
-      return finalAuraEffect;
+
+      //return auraEffect;
     }
   }
 }

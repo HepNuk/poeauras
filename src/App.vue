@@ -8,11 +8,11 @@
       <TopNav />
     <div class="flex-container">
       <div class="inputs">
-        <Home :auraEffect="auraEffect" :auraList="auraList" @change-auraeffect="auraEffectUp"/>
+        <Home @change-auraeffect="auraEffectUp"/>
         <button @click="auraEffectUp">hi</button>
       </div>
       <div class="outputs">
-        <StatOutput :auraEffect="auraEffect" :auraList="auraList" />
+        <StatOutput />
 
       </div>
     </div>
@@ -23,7 +23,6 @@
 import TopNav from './components/TopNav.vue'
 import Home from './views/Home.vue'
 import StatOutput from './components/StatOutput.vue'
-import auraList from './models/auraList.js'
 
 export default {
   name: 'App',
@@ -34,8 +33,6 @@ export default {
   }, 
   data() {
     return {
-      auraList,
-      auraEffect: 0,
     }
   },
   methods: {

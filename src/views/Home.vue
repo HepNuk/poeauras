@@ -1,12 +1,14 @@
 <template>
   <div class="content">
-    <button @click="$emit('change-auraeffect')"> 
+    <button @click="changeAuraEffect"> 
       Test in Home
     </button>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'Home',
   props: {
@@ -14,6 +16,7 @@ export default {
     auraEffect: Number,
   },
   methods: {
+    ...mapActions(['changeAuraEffect']),
     auraPlus(){
       this.auraEffect++;
       console.log(this.auraEffect);

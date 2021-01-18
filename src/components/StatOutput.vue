@@ -1,24 +1,27 @@
-/* eslint-disable vue/require-v-for-key */
 <template>
     <div class="box">
       <div class="sticky">
         <h1>Aura </h1>
-        <p>Aura Stats Output {{this.auraEffect}}% Aura Effect</p>
+        <p>Aura Stats Output {{getAuraEffect}}% Aura Effect</p>
+        {{log()}}
+        {{print()}}
       </div>
         <Aura 
-          :key="aura.title" 
+          :key="aura.key" 
           :aura="aura"
-          :auraEffect="auraEffect"
+          :auraEffect="getAuraEffect"
           :auraData="matchingAuraData(aura)"
-          v-for="aura in auraList"
+          v-for="aura in getAuras"
 
         />
     </div>
 </template>
 
 <script>
-import Aura from "../components/aura/Aura.vue"
+import Aura from "../components/aura/Aura.vue";
+import { mapGetters } from 'vuex';
 const auraData = require('../models/aurastats.json');
+
 
 export default {
   name: "StatOutput",
@@ -26,8 +29,6 @@ export default {
     Aura,
   },
   props: {
-    auraList: Array,
-    auraEffect: Number,
   },
   data(){
     return{
@@ -38,8 +39,15 @@ export default {
   methods: {
     matchingAuraData(aura) {
       return auraData[aura.title];
+    },
+    log(){
+      console.log(this.getClusters);
+    },
+    print(){
+      //return this.getClusters.REPLENISHING.effect()[0]
     }
-  }
+  },
+  computed: mapGetters(['getAuraEffect', 'getAuras', 'getAuraEffect', 'getClusters'])
 }
 </script>
 
