@@ -1,28 +1,6 @@
 <template>
   <div class="home">
     HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    HOME MIGHT NOT BE NEEDED <br />
-    
   </div>
 </template>
 

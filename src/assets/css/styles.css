@@ -10,26 +10,22 @@ body {
 
 .app {
   font-family: itemFont;
-  background-color: none;
   padding: 1px;
   color: rgb(255, 255, 255);
 }
 
 .header {
+  height: 100%;
   padding-left: 10px;
   padding-top: 5px;
-  padding-bottom: 0px;
   background-color: #373d44;
-}
-
-.header-spacer {
-  background-color: #58606b;
-  height: 8px;
+  border-radius: 6px;
 }
 
 .content {
   padding: 10px !important;
   background-color: #373d44;
+  border-radius: 6px;
 }
 
 .output-stats {
@@ -39,4 +35,5 @@ body {
   min-height: 820px;
   overflow-y: auto;
   background-color: #373d44;
+  border-radius: 6px;
 }

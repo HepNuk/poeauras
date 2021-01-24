@@ -1,13 +1,24 @@
 <template>
-  <h1>Auras Page</h1>
+  <div class="d-flex justify-content-center flex-wrap aura-labels">
+    <AuraLabel class="flex-grow-1"/>
+    <AuraLabel class="flex-grow-1"/>
+    <AuraLabel class="flex-grow-1"/>
+    <AuraLabel class="flex-grow-1"/>
+    <AuraLabel class="flex-grow-1"/>
+    
+  </div>
 </template>
 
 <script>
-export default {
+import AuraLabel from '../components/aura/AuraLabel'
 
+export default {
+  components: {
+    AuraLabel,
+  }
 }
 </script>
 
 <style>
-
+.aura-lavels {}
 </style>
