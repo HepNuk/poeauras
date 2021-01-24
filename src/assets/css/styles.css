@@ -4,73 +4,39 @@
 }
 
 body {
-  padding: 10px;
-  background-color: rgb(29, 26, 26);
+  padding: 15px;
+  background-color: #58606b;
 }
 
 .app {
   font-family: itemFont;
   background-color: none;
-  padding: none;
+  padding: 1px;
+  color: rgb(255, 255, 255);
 }
 
 .header {
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 0px;
+  background-color: #373d44;
+}
+
+.header-spacer {
+  background-color: #58606b;
+  height: 8px;
+}
+
+.content {
+  padding: 10px !important;
+  background-color: #373d44;
+}
+
+.output-stats {
   padding: 15px;
-  text-align: left;
-  background-color: none;
-  margin-bottom: -20px;
-  margin-top: -40px;
+  min-width: 475px;
+  max-height: 820px;
+  min-height: 820px;
+  overflow-y: auto;
+  background-color: #373d44;
 }
-
-.header h1 {
-  color: rgb(212, 212, 212);
-  font-size: 40px;
-  margin-bottom: -15px;
-}
-
-.header p {  
-    font-size: larger;
-    color: white;
-}
-
-.divider{
-  width:5px;
-  height:auto;
-  display:inline-block;
-}
-
-.flex-container{
-  position: relative;
-  z-index: 1;
-  display: flex;
-
-  flex-flow: row wrap;
-  justify-content: space-around;
-
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  height: 780px;
-
-}
-
-.inputs {
-  box-sizing: border-box;
-  order: 1;
-  padding: 5px;
-  width: 1000px;
-  height: 100%;
-  flex-grow: 1;
-}
-
-.outputs {
-  box-sizing: border-box;
-  order: 2;
-  align-self: flex-start;
-
-  min-width: 525px;
-  padding: 5px;
-  height: 100%;
-  
-}
-

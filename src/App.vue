@@ -1,50 +1,65 @@
 <template>
   <div class="app">
-    <div class="header">
+    <div class="header sticky-top">
       <h1>Nuk's PoE Aura stats calculator</h1>
-      <p>- Under Construction</p>
+      <p><span class="fa fa-info-circle"/> Updated for Path of Exile version 3.13 | Last Update : Jan 4th 2021</p>
     </div>
+    
 
-      <TopNav />
-    <div class="flex-container">
-      <div class="inputs">
-        <Home @change-auraeffect="auraEffectUp"/>
-        <button @click="auraEffectUp">hi</button>
+    <div class="d-flex flex-wrap mt-2"> 
+
+      <div class="flex-grow-1">
+        
+        <Home class="content mb-2 mr-2"/>
+        <Ascendancies class="content mb-2 mr-2"/>
+        <Tree class="content mb-2 mr-2"/>
+        <Gear class="content mb-2 mr-2"/>
+        <Auras class="content mb-2 mr-2"/>
+        
       </div>
-      <div class="outputs">
-        <StatOutput />
+
+      <div class="">
+        <StatOutput class="output-stats sticky-top" :auraData="auraData"/>
       </div>
+
     </div>
   </div>
 </template>
 
 <script>
-import TopNav from './components/TopNav.vue'
-import Home from './views/Home.vue'
-import StatOutput from './components/StatOutput.vue'
+import Home from './views/Home.vue';
+import StatOutput from './components/StatOutput.vue';
+import Ascendancies from './views/Ascendancies.vue';
+import Tree from './views/Tree.vue';
+import Gear from './views/Gear.vue';
+import Auras from './views/Auras.vue';
+
+
+const auraData = require('./models/aurastats.json');
 
 export default {
   name: 'App',
   components: {
     Home,
-    TopNav,
+    Ascendancies,
+    Tree,
+    Gear,
+    Auras,
+    // TopNav,
     StatOutput,
   }, 
   data() {
     return {
+      auraData,
     }
   },
   methods: {
-    log: function (log) {
-      console.log(log);
-    },
-    auraEffectUp(){
-      this.auraEffect++;
-    }
+
   }
 }
 </script>
 
 <style>
   @import './assets/css/styles.css';
+
 </style>
