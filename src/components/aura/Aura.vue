@@ -28,7 +28,7 @@ import { mapGetters } from 'vuex';
 export default {
   name: "Aura",
   props: {
-    key: String,
+    auraKey: Object,
     aura: Object,
     auraData: Object,
     auraEffect: Number,
@@ -64,7 +64,7 @@ export default {
         
         statLines = statLines.replace("{" + i + "}", this.calculateAfterAuraEffect(statValues[i]).toString());
       }
-
+      this.calcAuraEffect();
       return statLines;
     },
 
@@ -85,7 +85,7 @@ export default {
     calculateAfterAuraEffect(value){
 
       let auraEffect = 0;// this.auraEffect + this.specificAuraEffect;
-      console.log(this.key);
+      console.log(this.auraKey);
       switch(this.aura.generosityType){
         case 1:
           auraEffect += this.generosityEffect[1][this.aura.generosityLevel];
@@ -101,7 +101,7 @@ export default {
     },
     calcAuraEffect(){
 
-      //let auraEffect = this.getClusters.auraEffect();
+      this.getClusters.auraEffect(this.auraKey);
       
 
       //return auraEffect;

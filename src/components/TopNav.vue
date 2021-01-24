@@ -1,7 +1,7 @@
 <template>
   <div class="topnav">
     <button>
-      Home
+      HARROO
     </button>
     <div class="divider" />
     <button>

@@ -13,7 +13,6 @@
       </div>
       <div class="outputs">
         <StatOutput />
-
       </div>
     </div>
   </div>

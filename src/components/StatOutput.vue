@@ -7,12 +7,12 @@
         {{print()}}
       </div>
         <Aura 
-          :key="aura.key" 
+          v-for="(aura, key) in getAuras"
           :aura="aura"
           :auraEffect="getAuraEffect"
           :auraData="matchingAuraData(aura)"
-          v-for="aura in getAuras"
-
+          :auraKey="key" 
+          :key="key"  
         />
     </div>
 </template>

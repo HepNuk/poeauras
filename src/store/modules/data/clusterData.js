@@ -17,7 +17,7 @@ class Cluster {
         this.affects = affects;
         this.auraEffect = auraEffect;
         this.special = special || false;
-        this.effect = effect || function(){ return "" };
+        this.effect = effect || function(){ return null };
     }
 }
 
@@ -80,6 +80,18 @@ const clusterList = {
             }
 
         }
+    },
+
+    updateGlobalAuraEffect: function() {
+        let globalAuraEffect = 0
+
+        for(const cluster in this){
+            if(cluster.affects === true){
+                globalAuraEffect += (cluster.auraEffect * cluster.amount);
+            }
+        }
+        
+        return globalAuraEffect;
     },
 
     isAffected: function(aura){
