@@ -10,7 +10,7 @@ const state = {
         gearGlobal: {
             helmet: 0,
             shield: 0,
-            body: 30,
+            body: 0,
             get() { return this.helmet + this.shield + this.body; }
         },
         get() { 

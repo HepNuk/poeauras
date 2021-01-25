@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     matchingAuraData(aura) {
-      return this.auraData[aura.title];
+      return this.auraData[aura.key];
     },
     log(){
       console.log(this.getClusters);

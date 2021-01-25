@@ -11,9 +11,9 @@
         <div class="d-inline-flex align-items-center mr-0">
           <img src="@/assets/img/gem/generosity.png" />:
           <select v-model="aura.generosityType">
-            <option value="0">None</option>
-            <option value="1">Generosity</option>
-            <option value="2">Awakened</option>2
+            <option :value="0">None</option>
+            <option :value="1">Generosity</option>
+            <option :value="2">Awakened</option>2
           </select>
           <input v-model="aura.generosityLevel" type="number" min="0" max="40" placeholder="Lvl"/>
         </div>
@@ -72,7 +72,7 @@ export default {
       return require(`../../assets/img/gem/${imgTitle}.png`)
     },
     hasPhantasmal(){
-      console.log(this.auraData.qualityStatLines.stats);
+      console.log(this.aura);
       return (this.auraData.qualityStatLines.stats.length > 3);
     }
   },
