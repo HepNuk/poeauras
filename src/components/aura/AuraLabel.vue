@@ -10,12 +10,12 @@
 
         <div class="d-inline-flex align-items-center mr-0">
           <img src="@/assets/img/gem/generosity.png" />:
-          <select v-model="genoType">
+          <select v-model="aura.generosityType">
             <option value="0">None</option>
             <option value="1">Generosity</option>
             <option value="2">Awakened</option>2
           </select>
-          <input type="number" min="0" max="40" placeholder="Lvl"/>
+          <input v-model="aura.generosityLevel" type="number" min="0" max="40" placeholder="Lvl"/>
         </div>
 
       </div>
@@ -27,17 +27,17 @@
         <div class="d-inline-flex align-items-center">
 
           <span class="details">Lvl:</span>
-          <input type="number" min="0" max="40" placeholder="Lvl"/>
+          <input v-model="aura.level" type="number" min="0" max="40" placeholder="Lvl"/>
 
           <span class="details">Qual:</span>
-          <input type="number" min="0" max="120" placeholder="Qlty"/>
+          <input v-model="aura.quality" type="number" min="0" max="120" placeholder="Qlty"/>
 
           <span class="details">Alt:</span>
-          <select v-model="genoType">
+          <select v-model="aura.altQuality">
             <option value="0">None</option>
             <option value="1">Anom</option>
             <option value="2">Diverg</option>
-            <option value="3">Phantasm</option>
+            <option v-if="hasPhantasmal()" value="3">Phantasm</option>
           </select>
 
         </div>
@@ -70,6 +70,10 @@ export default {
     getGemImgURL(){
       const imgTitle = (this.auraData.title).toLowerCase().replace(' of', '').replace(' ', '_');
       return require(`../../assets/img/gem/${imgTitle}.png`)
+    },
+    hasPhantasmal(){
+      console.log(this.auraData.qualityStatLines.stats);
+      return (this.auraData.qualityStatLines.stats.length > 3);
     }
   },
 

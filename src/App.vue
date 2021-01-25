@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <div class="header mb-2">
-      <h1>Nuk's PoE Aura stats calculator</h1>
+      <h1>Nuk's PoE Aura stats calculator | WIP</h1>
       <p class="mb-0"><span class="fa fa-info-circle"/> Updated for Path of Exile version 3.13 | Last Update : Jan 4th 2021</p>
     </div>
     <div class="d-flex"> 
