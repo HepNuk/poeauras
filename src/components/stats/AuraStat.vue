@@ -1,9 +1,9 @@
 <template>
   <div v-if="aura.level > 0">
     
-    <li class="aura_name">~ {{aura.title}} ~ {{auraEffect}}</li>
+    <li class="aura-name">~ {{aura.title}} ~ {{auraEffect}}</li>
     <li 
-      class="aura_stat" 
+      class="aura-stat" 
       :key="levelStatLine"
       v-for="(levelStatLine, index) in auraData.levelStatLines.stats"
     >
@@ -11,13 +11,13 @@
     </li>
     <div v-if="aura.altQuality != 0 && aura.quality > 0 && auraData.qualityStatLines.stats[aura.altQuality]">
       <li 
-        class="aura_stat" 
+        class="aura-stat" 
         :key="qualityStatLine"
         v-for="(qualityStatLine, index) in auraData.qualityStatLines.stats[aura.altQuality]">
         {{printQualityStatLine(qualityStatLine, index)}}
       </li>
     </div>
-    <li class="aura_stat">~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~</li>
+    <li class="aura-stat separetor">~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~</li>
     
   </div>
 </template>
@@ -117,14 +117,15 @@ li {
   font-size: 16px;
 }
 
-.aura_name {
+.aura-name {
   color: #dc4b4b;
 }
 
-
-.aura_stat {
-  color: rbg(136, 136, 255);
-  font-weight: bo;
+.aura-stat {
+  color:rgb(255, 255, 255);
 }
 
+.separetor {
+  text-align: justify;
+}
 </style>

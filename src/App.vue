@@ -12,11 +12,11 @@
         <Ascendancies class="content mb-2 mr-2"/>
         <Tree class="content mb-2 mr-2"/>
         <Gear class="content mb-2 mr-2"/> -->
-        <Auras class="content mb-2 mr-2"/>
+        <Auras class="content mb-2 mr-2" :auraData="auraData"/>
         
       </div>
 
-      <div class="">
+      <div class="justify-content-center">
         <StatOutput class="output-stats sticky-top" :auraData="auraData"/>
       </div>
 
