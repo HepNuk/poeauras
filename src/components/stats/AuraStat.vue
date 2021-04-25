@@ -64,7 +64,7 @@ export default {
         
         statLines = statLines.replace("{" + i + "}", this.calculateAfterAuraEffect(statValues[i]).toString());
       }
-      this.calcAuraEffect();
+      
       return statLines;
     },
 
@@ -84,7 +84,8 @@ export default {
 
     calculateAfterAuraEffect(value){
 
-      let auraEffect = 0;// this.auraEffect + this.specificAuraEffect;
+      let auraEffect = this.getAuraEffect;
+
       console.log(this.auraKey);
       switch(this.aura.generosityType){
         case 1:
@@ -99,13 +100,6 @@ export default {
 
       return Math.floor(value* auraMultiplier);
     },
-    calcAuraEffect(){
-
-      this.getClusters.auraEffect(this.auraKey);
-      
-
-      //return auraEffect;
-    }
   }
 }
 </script>

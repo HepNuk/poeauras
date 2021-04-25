@@ -1,7 +1,7 @@
 class Aura {
-    constructor(key, name){
+    constructor(key, title){
         this.key = key;
-        this.title = name;
+        this.title = title;
         this.level = 0;
         this.altQuality = 0;
         this.quality = 0;
@@ -31,7 +31,6 @@ const auraList = {
     PRECISION: new Aura('PRECISION', 'Precision'),
     VITALITY: new Aura('VITALITY', 'Vitality'),
     ENVY: new Aura('ENVY', 'Envy'),
-
 }
 
 export default auraList;

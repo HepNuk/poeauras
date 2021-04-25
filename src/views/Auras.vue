@@ -4,7 +4,6 @@
     <AuraLabel
       v-for="(aura , key) in auraData"
       :auraData="aura"
-      :aura="getMatchingAura(key)"
       :auraKey="key"
       :key="key"
     />
@@ -14,7 +13,6 @@
 
 <script>
 import AuraLabel from '../components/aura/AuraLabel';
-import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -24,16 +22,11 @@ export default {
   props: {
     auraData: Object,
   },
-  methods: {
-    getMatchingAura(key) {
-      return this.getAuras[(key).toUpperCase()]
-    }
-  },
 
-  computed: mapGetters(['getAuras']),
+  methods: {
+  },
 }
 </script>
 
 <style>
-  
 </style>

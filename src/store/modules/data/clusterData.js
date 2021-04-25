@@ -1,11 +1,11 @@
 const CONST = {
     // Cluster Constantes
-    SMALL_EFFECT: 3,
-    SMALL_INC_EFFECT: 4,
-    FIRST_AMONG_EFFECT: 8,
-    REPLENISHING_EFFECT: [8, 1],
-    VENGEFUL_EFFECT: 20,
-    STALWART_EFFECT: 20,
+    SMALL_EFFECT: [3],
+    SMALL_INC_EFFECT: [4],
+    FIRST_AMONG_EFFECT: [6],
+    REPLENISHING_EFFECT: [6, 1],
+    VENGEFUL_EFFECT: [15],
+    STALWART_EFFECT: [15],
     PURE_EFFECT: [10, 30],
     PRECISE_EFFECT: [false, 25, 10],
  }
@@ -13,7 +13,7 @@ const CONST = {
 class Cluster {
     constructor(title, affects, auraEffect, special, effect){
         this.title = title;
-        this.amount = 2;
+        this.amount = 0;
         this.affects = affects;
         this.auraEffect = auraEffect;
         this.special = special || false;
@@ -64,40 +64,6 @@ const clusterList = {
             ];
         }
     ),
-
-    auraEffect: function(aura) {
-        let auraEffect = [0, 0];
-
-        for(const cluster in this){
-            
-            if (cluster.amount > 0 && cluster.affects !== false) {
-                if (cluster.affects === true) {
-                    auraEffect[0] += (cluster.auraEffect * cluster.amount);
-                }
-                else if (cluster.affects.includes(aura)){
-                    auraEffect[1] += (cluster.auraEffect * cluster.amount);
-                }
-            }
-
-        }
-    },
-
-    updateGlobalAuraEffect: function() {
-        let globalAuraEffect = 0
-
-        for(const cluster in this){
-            if(cluster.affects === true){
-                globalAuraEffect += (cluster.auraEffect * cluster.amount);
-            }
-        }
-        
-        return globalAuraEffect;
-    },
-
-    isAffected: function(aura){
-        //
-        return aura;
-    }
 }
 
 export default clusterList;

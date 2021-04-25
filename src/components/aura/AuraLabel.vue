@@ -10,12 +10,12 @@
 
         <div class="d-inline-flex align-items-center mr-0">
           <img src="@/assets/img/gem/generosity.png" />:
-          <select v-model="aura.generosityType">
+          <select v-model="generosityType">
             <option :value="0">None</option>
             <option :value="1">Generosity</option>
             <option :value="2">Awakened</option>2
           </select>
-          <input v-model="aura.generosityLevel" type="number" min="0" max="40" placeholder="Lvl"/>
+          <input v-model="generosityLevel" type="number" min="0" max="40" placeholder="Lvl"/>
         </div>
 
       </div>
@@ -27,13 +27,13 @@
         <div class="d-inline-flex align-items-center">
 
           <span class="details">Lvl:</span>
-          <input v-model="aura.level" type="number" min="0" max="40" placeholder="Lvl"/>
+          <input v-model="level" type="number" min="0" max="40" placeholder="Lvl"/>
 
           <span class="details">Qual:</span>
-          <input v-model="aura.quality" type="number" min="0" max="120" placeholder="Qlty"/>
+          <input v-model="quality" type="number" min="0" max="120" placeholder="Qlty"/>
 
           <span class="details">Alt:</span>
-          <select v-model="aura.altQuality">
+          <select v-model="altQuality">
             <option value="0">None</option>
             <option value="1">Anom</option>
             <option value="2">Diverg</option>
@@ -47,6 +47,9 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+// import { mapState } from 'vuex';
+// import { mapActions } from 'vuex';
 
 export default {
 
@@ -58,27 +61,50 @@ export default {
 
   props: {
     auraData: Object,
-    auraKet: String,
+    auraKey: String,
     aura: Object,
+  },
+
+  computed: {
+    ...mapGetters(['getAuras']),
+    level: {
+      set(v) { this.$store.commit('UPDATE_AURA_LEVEL', { key: this.auraKey, value: v }); },
+      get() { return this.getAuras[this.auraKey].level; },
+    },
+    quality: {
+      set(v) { this.$store.commit('UPDATE_AURA_QUALITY', { key: this.auraKey, value: v }); },
+      get() { return this.getAuras[this.auraKey].quality; },
+    },
+    altQuality: {
+      set(v) { this.$store.commit('UPDATE_AURA_ALT_QUALITY', { key: this.auraKey, value: v }); },
+      get() { return this.getAuras[this.auraKey].altQuality; },
+    },
+    generosityType: {
+      set(v) { this.$store.commit('UPDATE_AURA_GENO_TYPE', { key: this.auraKey, value: v }); },
+      get() { return this.getAuras[this.auraKey].generosityType; },
+    },
+    generosityLevel: {
+      set(v) { this.$store.commit('UPDATE_AURA_GENO_LEVEL', { key: this.auraKey, value: v }); },
+      get() { return this.getAuras[this.auraKey].generosityLevel; },
+    },
   },
 
   methods: {
     getAuraImgURL(){
-      const imgTitle = (this.auraData.title).toLowerCase().replace(' of', '').replace(' ', '_');
+      const imgTitle = (this.auraKey).toLowerCase();
       return require(`../../assets/img/aura/${imgTitle}.png`)
     },
     getGemImgURL(){
-      const imgTitle = (this.auraData.title).toLowerCase().replace(' of', '').replace(' ', '_');
+      const imgTitle = (this.auraKey).toLowerCase();
       return require(`../../assets/img/gem/${imgTitle}.png`)
     },
     hasPhantasmal(){
-      console.log(this.aura);
       return (this.auraData.qualityStatLines.stats.length > 3);
-    }
+    },
   },
 
   mounted(){
-    console.log('Hi', this.aura, this.auraData)
+    
   },
 }
 </script>
@@ -137,22 +163,22 @@ export default {
       font-size: 14px;
     }
   }
-
+  @media screen and (max-width: 1375px) {
+    .label {
+      flex: 0 0 100%;
+    }
+  }
   @media screen and (min-width: 1765px) {
     .label {
       flex: 0 0 33.333332%;
     }
   }
 
-  @media screen and (min-width: 1355px) and (max-width: 1764px) {
+  @media screen and (min-width: 1375px) and (max-width: 1764px) {
     .label {
       flex: 0 0 50%;
     }
   }
 
-  @media screen and (max-width: 1354px) {
-    .label {
-      flex: 0 0 100%;
-    }
-  }
+  
 </style>

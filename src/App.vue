@@ -9,9 +9,9 @@
       <div class="flex-grow-1">
         
         <!-- <Home class="content mb-2 mr-2"/>
-        <Ascendancies class="content mb-2 mr-2"/>
+        <Ascendancies class="content mb-2 mr-2"/>-->
         <Tree class="content mb-2 mr-2"/>
-        <Gear class="content mb-2 mr-2"/> -->
+        <Gear class="content mb-2 mr-2"/> 
         <Auras class="content mb-2 mr-2" :auraData="auraData"/>
         
       </div>
