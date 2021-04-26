@@ -1,18 +1,16 @@
 <template>
   <div class="d-flex flex-wrap aura-labels">
-
     <AuraLabel
       v-for="(aura , key) in auraData"
-      :auraData="aura"
-      :auraKey="key"
       :key="key"
+      :aura-data="aura"
+      :aura-key="key"
     />
-      
   </div>
 </template>
 
 <script>
-import AuraLabel from '../components/aura/AuraLabel';
+import AuraLabel from '../components/aura/AuraLabel.vue';
 
 export default {
   components: {
@@ -20,9 +18,15 @@ export default {
   },
 
   props: {
-    auraData: Object,
+    auraData: {
+      type: Object,
+      require: true,
+      default: null,
+    }
   },
-
+  mounted() {
+    console.log(this.auraData);
+  },
   methods: {
   },
 }

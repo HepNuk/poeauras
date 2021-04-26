@@ -8,6 +8,7 @@ const state = {
         ascGlobal: 0,
         treeGlobal: 0,
         clusterGlobal: 0,
+        timeless: 0,
         gearGlobal: {
             helmet: 0,
             shield: 0,
@@ -18,6 +19,7 @@ const state = {
             return  this.ascGlobal + 
                     this.treeGlobal + 
                     this.clusterGlobal + 
+                    this.timeless +
                     this.gearGlobal.get(); 
         }
 
@@ -30,9 +32,12 @@ const state = {
 const getters = {
     getAuraEffect: (state) => state.auraEffect.get(),
     getClusters: (state) => state.clusters,
-    getPassiveTree: (state) => state.passiveTree,
+
+    passiveTree: (state) => state.passiveTree,
+    timelessJewel: (state) => state.auraEffect.timeless,
+
     getAuras: (state) => state.auras,
-    getAura: (state, key) => state.auras[key],
+    // getAura: (state, key) => state.auras[key],
     getGlobalAuraEffect: ((state) => {
         return state.auraEffect.get() + state.clusters.auraEffect();
     }),
@@ -40,8 +45,23 @@ const getters = {
 
 const actions = {
 
-    updateGlobalAuraEffect({commit, state}) {
+    // updateGlobalAuraEffect({commit, state}) {
         
+    //     let clusterAuraEffect = 0;
+    //     Object.keys(state.clusters).forEach((key) => {
+    //         console.log(clusterAuraEffect)
+    //         console.log(state.clusters[key].affects, state.clusters[key].affects === true)
+    //         if(state.clusters[key].affects === true) {
+    //             clusterAuraEffect += (state.clusters[key].amount * state.clusters[key].auraEffect[0])
+    //         }
+    //     });
+    //     commit('UPDATE_CLUSTER_AURA_EFFECT', clusterAuraEffect);
+        
+    //     commit('UPDATE_GLOBAL_AURA_EFFECT', state.auraEffect.get());
+    // },
+
+    // Clusters
+    updateClusterAuraEffect({commit, state}) {
         let clusterAuraEffect = 0;
         Object.keys(state.clusters).forEach((key) => {
             console.log(clusterAuraEffect)
@@ -49,15 +69,42 @@ const actions = {
             if(state.clusters[key].affects === true) {
                 clusterAuraEffect += (state.clusters[key].amount * state.clusters[key].auraEffect[0])
             }
-        })
+        });
+
         commit('UPDATE_CLUSTER_AURA_EFFECT', clusterAuraEffect);
-        
         commit('UPDATE_GLOBAL_AURA_EFFECT', state.auraEffect.get());
-    }
+    },
+
+    // TREE
+    updateTreeAuraEffect({commit, state}) {
+        let treeAuraEffect = 0;
+        Object.keys(state.passiveTree).forEach((key) => {
+            const notableCluster = state.passiveTree[key]
+            let notableAuraEffect = 0;
+            let smallNodeAuraEffect = 0;
+
+            if(notableCluster.notable.isActive && !notableCluster.motMeek.isActive) notableAuraEffect += notableCluster.notable.value;
+            
+            notableCluster.smallnodes.forEach((node) => {
+                if (node.isActive) {
+                    if (notableCluster.motMeek.isActive) smallNodeAuraEffect += Math.floor(node.value * 1.5)
+                    else  smallNodeAuraEffect += node.value;
+                }
+            });
+
+            treeAuraEffect += (notableAuraEffect + smallNodeAuraEffect);
+        });
+
+        commit('UPDATE_TREE_AURA_EFFECT', treeAuraEffect);
+        commit('UPDATE_GLOBAL_AURA_EFFECT', state.auraEffect.get());
+    },
+
+    
 };
 
 const mutations = {
 
+    // Aura Effect Updates
     UPDATE_GLOBAL_AURA_EFFECT: ((state, payload) => {
         state.auraEffect.global = payload;
     }),
@@ -71,7 +118,7 @@ const mutations = {
         state.auraEffect.clusterGlobal = payload;
     }),
 
-
+    // Auras
     UPDATE_AURA_LEVEL: ((state, payload) => {
         state.auras[payload.key].level = payload.value;
     }),
@@ -88,6 +135,22 @@ const mutations = {
         state.auras[payload.key].generosityLevel = payload.value;
     }),
 
+    // Tree
+    UPDATE_NOTABLE: ((state, payload) => {
+        state.passiveTree[payload.key].notable.isActive = payload.value;
+    }),
+    UPDATE_MOTM: ((state, payload) => {
+        state.passiveTree[payload.key].motMeek.isActive = payload.value;
+    }),
+    UPDATE_SMALL_NODE: ((state, payload) => {
+        const newValue = !state.passiveTree[payload.key].smallnodes[payload.index].isActive
+        state.passiveTree[payload.key].smallnodes[payload.index].isActive = newValue;
+    }),
+    UPDATE_TIMELESS: ((state, payload) => {
+        state.auraEffect.timeless = payload.value
+    }),
+
+    // Clusters
     CHANGE_CLUSTER: ((state, payload) => {
         state.clusters[payload.key].amount = payload.value;
     }),

@@ -1,24 +1,26 @@
 <template>
   <div v-if="aura.level > 0">
-    
-    <li class="aura-name">~ {{aura.title}} ~ {{auraEffect}}</li>
+    <li class="aura-name">
+      ~ {{ aura.title }} ~ {{ auraEffect }}
+    </li>
     <li 
-      class="aura-stat" 
+      v-for="(levelStatLine, index) in auraData.levelStatLines.stats" 
       :key="levelStatLine"
-      v-for="(levelStatLine, index) in auraData.levelStatLines.stats"
+      class="aura-stat"
     >
-        {{printLevelStatLine(levelStatLine, index)}}
+      {{ printLevelStatLine(levelStatLine, index) }}
     </li>
     <div v-if="aura.altQuality != 0 && aura.quality > 0 && auraData.qualityStatLines.stats[aura.altQuality]">
       <li 
-        class="aura-stat" 
+        v-for="(qualityStatLine, index) in auraData.qualityStatLines.stats[aura.altQuality]" 
         :key="qualityStatLine"
-        v-for="(qualityStatLine, index) in auraData.qualityStatLines.stats[aura.altQuality]">
+        class="aura-stat">
         {{printQualityStatLine(qualityStatLine, index)}}
       </li>
     </div>
-    <li class="aura-stat separetor">~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~</li>
-    
+    <li class="aura-stat separetor">
+      ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+    </li>
   </div>
 </template>
 
@@ -28,7 +30,7 @@ import { mapGetters } from 'vuex';
 export default {
   name: "Aura",
   props: {
-    auraKey: Object,
+    auraKey: String,
     aura: Object,
     auraData: Object,
     auraEffect: Number,

@@ -1,20 +1,19 @@
 <template>
-    <div class="box">
-      <div class="sticky">
-        <h1>Aura </h1>
-        <p>Aura Stats Output {{getAuraEffect}}% Aura Effect</p>
-        {{log()}}
-        {{print()}}
-      </div>
-        <AuraStat 
-          v-for="(aura, key) in getAuras"
-          :aura="aura"
-          :auraEffect="getAuraEffect"
-          :auraData="matchingAuraData(aura)"
-          :auraKey="key" 
-          :key="key"  
-        />
+  <div class="box">
+    <div class="sticky">
+      <h1>Aura </h1>
+      <p>Aura Stats Output {{ getAuraEffect }}% Aura Effect</p>
+      {{ print() }}
     </div>
+    <AuraStat 
+      v-for="(aura, key) in getAuras"
+      :key="key" 
+      :aura="aura"
+      :aura-effect="getAuraEffect"
+      :aura-data="matchingAuraData(aura)"
+      :aura-key="key"  
+    />
+  </div>
 </template>
 
 <script>
@@ -28,26 +27,29 @@ export default {
   components:{
     AuraStat,
   },
+
   props: {
     auraData: Object,
   },
+
   data(){
     return{
       
     }
   },
+
+  computed: {
+    ...mapGetters(['getAuraEffect', 'getAuras', 'getAuraEffect', 'getClusters']),
+  },
+
   methods: {
     matchingAuraData(aura) {
       return this.auraData[aura.key];
-    },
-    log(){
-      console.log(this.getClusters);
     },
     print(){
       //return this.getClusters.REPLENISHING.effect()[0]
     }
   },
-  computed: mapGetters(['getAuraEffect', 'getAuras', 'getAuraEffect', 'getClusters'])
 }
 </script>
 

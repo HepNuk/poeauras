@@ -2,35 +2,37 @@
   <div class="label">
     <div class="d-flex aura-label">
       <div class="d-flex top-of-label justify-content-between">
-
         <div class="d-inline-flex align-items-center">
-          <img class="mr-2" :src="getAuraImgURL()" />
-          {{ this.auraData.title }}
+          <img class="mr-2" :src="getAuraImgURL()">
+          {{ auraData.title }}
         </div>
 
         <div class="d-inline-flex align-items-center mr-0">
-          <img src="@/assets/img/gem/generosity.png" />:
+          <img src="@/assets/img/gem/generosity.png">:
           <select v-model="generosityType">
             <option :value="0">None</option>
             <option :value="1">Generosity</option>
             <option :value="2">Awakened</option>2
           </select>
-          <input v-model="generosityLevel" type="number" min="0" max="40" placeholder="Lvl"/>
+          <input v-model="generosityLevel" type="number" min="0" max="40" placeholder="Lvl" >
         </div>
-
       </div>
       <div class="d-flex bottom-of-label justify-content-between">
         <div class="d-inline-flex align-items-center">
-          <img :src="getGemImgURL()" />
+          <img :src="getGemImgURL()">
         </div>
-
         <div class="d-inline-flex align-items-center">
-
           <span class="details">Lvl:</span>
-          <input v-model="level" type="number" min="0" max="40" placeholder="Lvl"/>
+          <input v-model="level" type="number" min="0" max="40" placeholder="Lvl">
 
           <span class="details">Qual:</span>
-          <input v-model="quality" type="number" min="0" max="120" placeholder="Qlty"/>
+          <input
+            v-model="quality"
+            type="number"
+            min="0"
+            max="120"
+            placeholder="Qlty"
+          >
 
           <span class="details">Alt:</span>
           <select v-model="altQuality">
@@ -39,7 +41,6 @@
             <option value="2">Diverg</option>
             <option v-if="hasPhantasmal()" value="3">Phantasm</option>
           </select>
-
         </div>
       </div>
     </div>
@@ -53,16 +54,27 @@ import { mapGetters } from 'vuex'
 
 export default {
 
+  props: {
+    auraData: {
+      type: Object,
+      require: true,
+    },
+    
+    auraKey: {
+      type: String,
+      require: true,
+    },
+
+    aura: {
+      type: Object,
+      require: true,
+    },
+  },
+
   data(){
     return {
       genoType: 0,
     }
-  },
-
-  props: {
-    auraData: Object,
-    auraKey: String,
-    aura: Object,
   },
 
   computed: {
@@ -89,22 +101,22 @@ export default {
     },
   },
 
+  mounted(){
+    
+  },
+
   methods: {
-    getAuraImgURL(){
+    getAuraImgURL() {
       const imgTitle = (this.auraKey).toLowerCase();
       return require(`../../assets/img/aura/${imgTitle}.png`)
     },
-    getGemImgURL(){
+    getGemImgURL() {
       const imgTitle = (this.auraKey).toLowerCase();
       return require(`../../assets/img/gem/${imgTitle}.png`)
     },
-    hasPhantasmal(){
+    hasPhantasmal() {
       return (this.auraData.qualityStatLines.stats.length > 3);
     },
-  },
-
-  mounted(){
-    
   },
 }
 </script>
