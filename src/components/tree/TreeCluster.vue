@@ -81,7 +81,7 @@ export default {
         this.$store.commit('UPDATE_MOTM', { key: this.treeClusterKey, value: v });
         this.$store.dispatch('updateTreeAuraEffect');
       },
-      get() { return this.passiveTree[this.treeClusterKey].notable.isActive; },
+      get() { return this.passiveTree[this.treeClusterKey].motMeek.isActive; },
     },
 
     hasBoarder() {
