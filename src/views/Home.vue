@@ -17,7 +17,6 @@ export default {
     ...mapActions(['changeAuraEffect']),
     auraPlus(){
       this.auraEffect++;
-      console.log(this.auraEffect);
     }
   }
 }

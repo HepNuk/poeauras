@@ -1,7 +1,7 @@
 <template>
   <div v-if="aura.level > 0">
     <li class="aura-name">
-      ~ {{ aura.title }} ~ {{ auraEffect }}
+      ~ {{ aura.title }} ~ {{ localAuraEffect }}
     </li>
     <li 
       v-for="(levelStatLine, index) in auraData.levelStatLines.stats" 
@@ -15,7 +15,7 @@
         v-for="(qualityStatLine, index) in auraData.qualityStatLines.stats[aura.altQuality]" 
         :key="qualityStatLine"
         class="aura-stat">
-        {{printQualityStatLine(qualityStatLine, index)}}
+        {{ printQualityStatLine(qualityStatLine, index) }}
       </li>
     </div>
     <li class="aura-stat separetor">
@@ -55,49 +55,37 @@ export default {
         specificAuraEffect: 100,
     }
   },
-  computed: mapGetters(['getAuraEffect', 'getAuras', 'getAuraEffect', 'getClusters']),
+  computed: { 
+    ...mapGetters(['getAuraEffect', 'getAuras', 'getAuraEffect', 'getClusters']),
+
+    localAuraEffect() {
+      return this.auraEffect + this.aura.localAuraEffect;
+    },
+  },
   
   methods: {
-    printLevelStatLine(statLines, index){
-
+    printLevelStatLine(statLines, index) {
       const statValues = this.auraData.levelStatLines.values[index][this.aura.level];
-
       for(let i=0; i<statValues.length; i++){
-        
-        statLines = statLines.replace("{" + i + "}", this.calculateAfterAuraEffect(statValues[i]).toString());
+        statLines = statLines.replace(`{${i}}`, this.calculateAfterAuraEffect(statValues[i]).toString());
       }
-      
+      console.log(this.aura)
       return statLines;
     },
 
-    printQualityStatLine(statLines, index){
-
-      const statValues = this.auraData.qualityStatLines.values[index];
-      console.log(statValues);
-
+    printQualityStatLine(statLines, index) {
+      const statValues = this.auraData.qualityStatLines.values[this.aura.altQuality];
       for(let i=0; i<statValues.length; i++){
-        
-        statLines = statLines.replace("{" + i + "}", this.calculateAfterAuraEffect(statValues[i]).toString());
+        statLines = statLines.replace(`{${i}}`, this.calculateAfterAuraEffect(statValues[i]*this.aura.quality).toString());
       }
 
-      console.log(statLines, index);
       return statLines
     },
 
-    calculateAfterAuraEffect(value){
+    calculateAfterAuraEffect(value) {
+      let auraEffect = this.getAuraEffect + this.aura.localAuraEffect;
 
-      let auraEffect = this.getAuraEffect;
-
-      console.log(this.auraKey);
-      switch(this.aura.generosityType){
-        case 1:
-          auraEffect += this.generosityEffect[1][this.aura.generosityLevel];
-          break;
-        case 2:
-          auraEffect += this.generosityEffect[2][this.aura.generosityLevel];
-          break;
-        default:
-      }
+      if (this.aura.generosityType > 0) auraEffect += this.generosityEffect[this.aura.generosityType][this.aura.generosityLevel];
       const auraMultiplier = (auraEffect/100+1)
 
       return Math.floor(value* auraMultiplier);

@@ -16,13 +16,14 @@ const state = {
             get() { return this.helmet + this.shield + this.body; }
         },
         get() { 
-            return  this.ascGlobal + 
-                    this.treeGlobal + 
-                    this.clusterGlobal + 
-                    this.timeless +
-                    this.gearGlobal.get(); 
+            return (
+                this.ascGlobal + 
+                this.treeGlobal + 
+                this.clusterGlobal + 
+                this.timeless +
+                this.gearGlobal.get()
+            ); 
         }
-
     },
     clusters,
     passiveTree,
@@ -44,28 +45,10 @@ const getters = {
 };
 
 const actions = {
-
-    // updateGlobalAuraEffect({commit, state}) {
-        
-    //     let clusterAuraEffect = 0;
-    //     Object.keys(state.clusters).forEach((key) => {
-    //         console.log(clusterAuraEffect)
-    //         console.log(state.clusters[key].affects, state.clusters[key].affects === true)
-    //         if(state.clusters[key].affects === true) {
-    //             clusterAuraEffect += (state.clusters[key].amount * state.clusters[key].auraEffect[0])
-    //         }
-    //     });
-    //     commit('UPDATE_CLUSTER_AURA_EFFECT', clusterAuraEffect);
-        
-    //     commit('UPDATE_GLOBAL_AURA_EFFECT', state.auraEffect.get());
-    // },
-
     // Clusters
     updateClusterAuraEffect({commit, state}) {
         let clusterAuraEffect = 0;
         Object.keys(state.clusters).forEach((key) => {
-            console.log(clusterAuraEffect)
-            console.log(state.clusters[key].affects, state.clusters[key].affects === true)
             if(state.clusters[key].affects === true) {
                 clusterAuraEffect += (state.clusters[key].amount * state.clusters[key].auraEffect[0])
             }
@@ -132,6 +115,9 @@ const mutations = {
         state.auras[payload.key].generosityType = payload.value;
     }),
     UPDATE_AURA_GENO_LEVEL: ((state, payload) => {
+        state.auras[payload.key].generosityLevel = payload.value;
+    }),
+    UPDATE_AURA_LOCAL_EFFECT: ((state, payload) => {
         state.auras[payload.key].generosityLevel = payload.value;
     }),
 

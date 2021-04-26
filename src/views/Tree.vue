@@ -26,25 +26,9 @@ export default {
     TimelessJewel,
   },
 
-  props: {
-
-  },
-
-  data() {
-    return {
-
-    }
-  },
-
   computed: {
     ...mapGetters(['passiveTree']),
   },
-
-  methods: {
-    log() {
-      console.log(this.passiveTree);
-    }
-  }
 }
 </script>
 

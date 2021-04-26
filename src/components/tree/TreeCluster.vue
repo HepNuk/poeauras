@@ -89,10 +89,6 @@ export default {
     }
   },
 
-  mounted() {
-    console.log(this.passiveTree[this.treeClusterKey]);
-  },
-
   methods: {
     getNotableImgUrl() {
       const imgTitle = (this.treeClusterKey).toLowerCase();

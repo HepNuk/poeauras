@@ -24,9 +24,7 @@ export default {
       default: null,
     }
   },
-  mounted() {
-    console.log(this.auraData);
-  },
+
   methods: {
   },
 }

@@ -7,6 +7,7 @@ class Aura {
         this.quality = 0;
         this.generosityType = 0;
         this.generosityLevel = 0;
+        this.localAuraEffect = 0;
     }
 }
 

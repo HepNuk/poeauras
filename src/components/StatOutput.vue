@@ -10,7 +10,7 @@
       :key="key" 
       :aura="aura"
       :aura-effect="getAuraEffect"
-      :aura-data="matchingAuraData(aura)"
+      :aura-data="auraData[aura.key]"
       :aura-key="key"  
     />
   </div>
